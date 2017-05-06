@@ -33,7 +33,6 @@
             bottom: 0;
             display: flex;
             justify-content: center;
-            left: 50%;
         }
         .controls li{
             margin-right: 10px;
@@ -44,7 +43,7 @@
             text-align: center;
             background: #eeeeee;
         }
-        ol{list-style: none;}
+        ol{list-style: none;padding: 0;}
     </style>
 </head>
 <body>
@@ -60,6 +59,7 @@
         window.slides = function(element){
             var $el = $(element)
             var $view = $el.children('.view')
+            var $viewidth=$view.width()
             var width = $el.width()
             var count = $el.find('.slide').length
             var currentIndex = 0
@@ -70,6 +70,11 @@
                 $ol.append(`<li>${i+1}</li>`)
             }
             $el.append($ol)
+            var olwidth =$viewidth/2 - $ol.width()/2
+            console.log(olwidth)
+
+            $ol.css({'left':`${olwidth}px`})
+            
 
             $ol.on('click','li',function(e){
                 let $li = $(e.currentTarget)
